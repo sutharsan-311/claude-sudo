@@ -1,0 +1,14 @@
+{
+  "name": "claude-sudo",
+  "owner": {
+    "name": "sutharsan"
+  },
+  "plugins": [
+    {
+      "name": "claude-sudo",
+      "source": "./",
+      "description": "Approve sudo commands in the Claude Code CLI; password comes from your keyring, never the transcript.",
+      "category": "security"
+    }
+  ]
+}
