@@ -99,4 +99,4 @@ framework.
 
 ## License
 
-MIT
+[MIT](LICENSE)
