@@ -1,5 +1,7 @@
 # claude-sudo
 
+`sudo` `askpass` `keyring` `hooks` `security`
+
 **Linux only.** The password backend is GNOME Keyring via `secret-tool`; there
 is no macOS (Keychain) or Windows (Credential Manager) support.
 
