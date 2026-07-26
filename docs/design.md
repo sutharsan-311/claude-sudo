@@ -1,7 +1,9 @@
 # claude-sudo: password prompts for Claude Code's Bash tool
 
 **Date:** 2026-07-25
-**Status:** approved design, not yet implemented
+**Status:** implemented
+**Platform:** Linux only (GNOME Keyring via `secret-tool`). Not supported on
+macOS or Windows — see "Out of scope."
 
 ## The problem
 
@@ -210,6 +212,10 @@ installed.
 
 ## Out of scope
 
+- **macOS and Windows.** The password backend is GNOME Keyring via
+  `secret-tool`, a Linux/libsecret-specific tool. Keychain (macOS) and
+  Credential Manager (Windows) would need their own askpass backends; not
+  attempted here.
 - Headless and SSH sessions. Nothing can prompt there; the askpass helper fails
   fast with a readable message and the user runs the command themselves.
 - Per-command allowlists or denylists. The approval prompt already shows the

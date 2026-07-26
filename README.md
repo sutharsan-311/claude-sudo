@@ -1,5 +1,8 @@
 # claude-sudo
 
+**Linux only.** The password backend is GNOME Keyring via `secret-tool`; there
+is no macOS (Keychain) or Windows (Credential Manager) support.
+
 `sudo` doesn't work in Claude Code. Commands hang until the Bash tool times
 out, then fail with:
 
@@ -47,7 +50,7 @@ secret-tool store --label='claude sudo' service claude-sudo user "$USER"
 Then install the plugin and restart Claude Code:
 
 ```
-/plugin marketplace add ~/claude-sudo
+/plugin marketplace add sutharsan-311/claude-sudo
 /plugin install claude-sudo@claude-sudo
 ```
 
