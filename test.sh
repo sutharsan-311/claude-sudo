@@ -38,5 +38,25 @@ check "sudoedit is caught too" \
 check "pseudo does not trigger" "$(run 'grep pseudo notes.txt')" ""
 check "sudoku does not trigger" "$(run 'echo sudoku')" ""
 
+# askpass.sh: stub secret-tool on PATH rather than touching the real keyring.
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+mkdir -p "$tmpdir/empty" "$tmpdir/bin"
+
+out=$(PATH="$tmpdir/empty" ./scripts/askpass.sh 2>&1); rc=$?
+check "askpass fails when secret-tool is missing" \
+  "$rc:$(printf '%s' "$out" | grep -c 'secret-tool not installed')" "1:1"
+
+printf '#!/bin/sh\nexit 1\n' > "$tmpdir/bin/secret-tool"
+chmod +x "$tmpdir/bin/secret-tool"
+out=$(PATH="$tmpdir/bin" ./scripts/askpass.sh 2>&1); rc=$?
+check "askpass fails when keyring entry is missing" \
+  "$rc:$(printf '%s' "$out" | grep -c 'no password stored')" "1:1"
+
+printf '#!/bin/sh\necho s3cr3t\n' > "$tmpdir/bin/secret-tool"
+chmod +x "$tmpdir/bin/secret-tool"
+out=$(PATH="$tmpdir/bin" ./scripts/askpass.sh 2>/dev/null); rc=$?
+check "askpass prints the password and exits 0" "$rc:$out" "0:s3cr3t"
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 [ "$fail" -eq 0 ]

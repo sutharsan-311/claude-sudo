@@ -73,7 +73,9 @@ the command, and after approving, it succeeds.
 ./test.sh
 ```
 
-Feeds crafted hook payloads to `sudo-guard.sh` and asserts on the output. No
+Feeds crafted hook payloads to `sudo-guard.sh` and asserts on the output, and
+runs `askpass.sh` against a stubbed `secret-tool` to cover the missing-binary,
+missing-entry, and success paths without touching the real keyring. No
 framework.
 
 ## Security notes
