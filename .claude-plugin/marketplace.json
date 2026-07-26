@@ -3,6 +3,7 @@
   "owner": {
     "name": "sutharsan"
   },
+  "description": "sudo support for Claude Code's Bash tool, approval-gated in the CLI with the password kept in your keyring.",
   "plugins": [
     {
       "name": "claude-sudo",

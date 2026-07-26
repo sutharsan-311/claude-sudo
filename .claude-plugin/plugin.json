@@ -2,6 +2,10 @@
   "name": "claude-sudo",
   "version": "0.1.1",
   "description": "Lets sudo commands work in Claude Code's Bash tool: approve in the CLI, password comes from your keyring instead of the transcript.",
+  "author": {
+    "name": "sutharsan",
+    "url": "https://github.com/sutharsan-311"
+  },
   "license": "MIT",
   "keywords": ["sudo", "askpass", "keyring", "hooks", "security"]
 }
